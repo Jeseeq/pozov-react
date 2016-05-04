@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/better-npm-run digital
+web: npm run digital
