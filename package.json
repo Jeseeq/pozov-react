@@ -14,14 +14,14 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
-    "digital": "better-npm-run digital",
     "dev:no-debug": "npm run dev -- --no_debug",
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
-    "codecov": "cat coverage/*/lcov.info | codecov"
+    "codecov": "cat coverage/*/lcov.info | codecov",
+    "postinstall": "better-npm-run deploy:prod"
   },
   "betterScripts": {
     "compile": {
@@ -52,13 +52,6 @@
     },
     "deploy:prod": {
       "command": "npm run deploy",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "app:*"
-      }
-    },
-    "digital":{
-      "command": "npm run deploy && npm run start",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
