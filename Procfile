@@ -1,1 +1,1 @@
-web: npm run digital
+web: NODE_ENV=production; ./node_modules/.bin/babel-node ./bin/server
