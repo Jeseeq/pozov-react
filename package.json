@@ -69,6 +69,12 @@
         "NODE_ENV": "test",
         "DEBUG": "app:*"
       }
+    },
+    "digital": {
+      "command": "npm run start",
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   },
   "author": "Vitalii Hrytsiienko",

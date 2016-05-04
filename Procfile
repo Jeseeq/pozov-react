@@ -1,1 +1,1 @@
-web: npm run start --production
+web: better-npm-run digital
