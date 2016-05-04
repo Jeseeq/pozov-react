@@ -71,7 +71,7 @@
         "NODE_ENV": "test",
         "DEBUG": "app:*"
       }
-    },
+    }
   },
   "author": "Vitalii Hrytsiienko",
   "license": "MIT",
