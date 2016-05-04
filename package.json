@@ -56,6 +56,13 @@
         "DEBUG": "app:*"
       }
     },
+    "digital":{
+      "command": "npm run deploy && npm run start",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "app:*"
+      }
+    },
     "start": {
       "command": "babel-node bin/server",
       "env": {
