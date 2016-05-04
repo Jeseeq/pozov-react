@@ -61,7 +61,8 @@
     "start": {
       "command": "babel-node bin/server",
       "env": {
-        "DEBUG": "app:*"
+        "DEBUG": "app:*",
+        "NODE_ENV": "production"
       }
     },
     "test": {
@@ -71,12 +72,6 @@
         "DEBUG": "app:*"
       }
     },
-    "digital": {
-      "command": "babel-node bin/server",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
   },
   "author": "Vitalii Hrytsiienko",
   "license": "MIT",
