@@ -1,1 +1,1 @@
-web: npm run digital
+web: npm start
