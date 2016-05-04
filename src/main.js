@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
 import { Provider } from 'react-redux'
 
-import 'bootswatch/cosmo/bootstrap.min.css'
+import 'bootswatch/simplex/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 const MOUNT_ELEMENT = document.getElementById('root')

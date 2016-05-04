@@ -149,6 +149,7 @@ const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
 // These paths will be combined into a single regex.
 const PATHS_TO_TREAT_AS_CSS_MODULES = [
   // 'react-toolbox', (example)
+
 ]
 
 // If config has CSS modules enabled, treat this project's styles as CSS modules.
@@ -248,7 +249,7 @@ webpackConfig.module.loaders.push(
   { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
   { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
+  { test: /\.(png|jpg|gif)$/,    loader: 'url?limit=8192' }
 )
 /* eslint-enable */
 

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import classes from './Counter.scss'
 
 export const Counter = (props) => (

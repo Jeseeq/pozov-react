@@ -1,18 +1,47 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import {Link, IndexLink} from 'react-router'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import classes from './Header.scss'
 
-export const Header = () => (
-  <div>
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName={classes.activeRoute}>
-      Home
-    </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName={classes.activeRoute}>
-      Counter1
-    </Link>
-  </div>
-)
-
-export default Header
+export default class Header extends React.Component {
+  render () {
+    return (
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to='/'>Voting App</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <LinkContainer active={false} to={{pathname: '/'}}>
+              <NavItem eventKey={1}>Home</NavItem>
+            </LinkContainer>
+            <NavDropdown eventKey={2} title='Browse' id='basic-nav-dropdown'>
+              <MenuItem eventKey={3.1}>Users</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={3.2}>Polls</MenuItem>
+            </NavDropdown>
+            <LinkContainer to={{pathname: '/'}}>
+              <NavItem eventKey={4}><i className='fa fa-user' />Hello
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={{pathname: '/'}}>
+              <NavItem eventKey={5}>
+                <i className='fa fa-plus' /> New poll
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={{pathname: '/'}}>
+              <NavItem eventKey={6}>Signup</NavItem>
+            </LinkContainer>
+            <LinkContainer to={{pathname: '/'}}>
+              <NavItem eventKey={7}>Login</NavItem>
+            </LinkContainer>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+  }
+}
