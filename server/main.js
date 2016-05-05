@@ -3,6 +3,7 @@ import webpackConfig from '../build/webpack.config'
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import compress from 'compression'
 import authentication from './middleware/authentication'
 import historyApiFallback from 'connect-history-api-fallback'
 import _debug from 'debug'
@@ -27,6 +28,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(authentication.decodeToken)
+// Should be placed before express.static
 
 // Routes
 import users from './api/users'
@@ -66,6 +68,12 @@ if (config.env === 'development') {
     'in the README.'
   )
 
+  app.use(compress({
+    filter: function (req, res) {
+      return (/json|text|javascript|css|font|svg/).test(res.getHeader('Content-Type'))
+    },
+    level: 9
+  }))
   // Serving ~/dist by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
