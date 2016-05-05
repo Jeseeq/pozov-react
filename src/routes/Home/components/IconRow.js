@@ -1,5 +1,4 @@
 import React from 'react'
-import './HomeView.scss'
 
 const ContentBox = ({children}) => (
   <div className='row content-boxes margin-bottom-20'>
@@ -7,7 +6,7 @@ const ContentBox = ({children}) => (
   </div>
 )
 const BoxItem = ({children, text}) => (
-  <div className='col-md-4 md-margin-bottom-30'>
+  <div className='col-md-4 md-margin-bottom-20'>
     <h4 className='heading-sm'>
       {children}
     </h4>

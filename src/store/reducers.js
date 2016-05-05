@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
+import {reducer as form} from 'redux-form'
+import user from '../routes/Auth/modules/auth'
+import validateUserFields from '../routes/Auth/Signup/modules/validateUserFields'
 
 export const reducers = (asyncReducers) => {
   return combineReducers({
     // Add sync reducers here
+    validateUserFields,
+    user,
+    form,
     router,
     ...asyncReducers
   })

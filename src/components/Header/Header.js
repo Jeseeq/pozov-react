@@ -1,7 +1,7 @@
 import React from 'react'
-// import {Link, IndexLink} from 'react-router'
+import {Link, IndexLink} from 'react-router'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
-// import {LinkContainer} from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import './Header.scss'
 const BootstrapHeader = Navbar.Header
 const BootstrapToggle = Navbar.Toggle
@@ -14,7 +14,7 @@ class Header extends React.Component {
       <Navbar className='header'>
         <BootstrapHeader>
           <BootstrapBrand>
-            <a href='#'>Позов</a>
+            <Link to='/'>Позов</Link>
           </BootstrapBrand>
           <BootstrapToggle />
         </BootstrapHeader>
@@ -24,8 +24,12 @@ class Header extends React.Component {
             <NavItem eventKey={2} href='#'>Створити Документ</NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href='#'>Реєстрація</NavItem>
-            <NavItem eventKey={2} href='#'>Вхід</NavItem>
+            <LinkContainer to={{pathname: '/signup'}}>
+              <NavItem eventKey={1} href='#'>Реєстрація</NavItem>
+            </LinkContainer>
+            <LinkContainer to={{pathname: '/login'}}>
+              <NavItem eventKey={2} href='#'>Вхід</NavItem>
+            </LinkContainer>
             <NavDropdown eventKey={3} title='Імя користувача' id='basic-nav-dropdown'>
               <MenuItem eventKey={3.1}>Редагувати профіль</MenuItem>
               <MenuItem eventKey={3.2}>Змінити аватар</MenuItem>

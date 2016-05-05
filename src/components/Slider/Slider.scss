@@ -39,8 +39,8 @@
 }
 
 .modernSlider .item .info > div{
-  display:inline-block!important;
-  vertical-align:middle;
+  display: inline-block!important;
+  vertical-align: middle;
 }
 
 .modernSlider .slick-next{
@@ -127,23 +127,23 @@
 }
 
 .modernSlider .item.slick-active h3{
-  animation:fadeInDown 1s both 1s;
+  animation: fadeInDown 1s both 1s;
 }
 
 .modernSlider .item.slick-active h4{
-  animation:fadeInLeft 1s both 1.5s;
+  animation: fadeInLeft 1s both 1.5s;
 }
 
 .modernSlider .item.slick-active{
-  animation:Slick-FastSwipeIn 1s both;
+  animation: Slick-FastSwipeIn 1s both;
 }
 
 .modernSlider {background:#000;}
 
 /* ==== Slider Image Transition === */
 @keyframes Slick-FastSwipeIn{
-    0%{transform:rotate3d(0,1,0,150deg) scale(0)  perspective(400px);}
-    100%{transform:rotate3d(0,1,0,0deg) scale(1) perspective(400px);}
+    0%{transform: scale(0)  perspective(400px);}
+    100%{transform: scale(1) perspective(400px);}
 }
 
 @-webkit-keyframes ProgressDots{from{width:0px;}to{width:100%;}}

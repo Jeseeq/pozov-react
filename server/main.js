@@ -1,6 +1,9 @@
 import webpack from 'webpack'
 import webpackConfig from '../build/webpack.config'
 import express from 'express'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import authentication from './middleware/authentication'
 import historyApiFallback from 'connect-history-api-fallback'
 import _debug from 'debug'
 import config from '../config'
@@ -8,6 +11,8 @@ import config from '../config'
 const debug = _debug('app:server')
 const paths = config.utils_paths
 const app = express()
+var db = require('./db')
+db.connect()
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic
@@ -17,6 +22,15 @@ app.use(historyApiFallback({
   verbose: false
 }))
 
+// Apply middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(cookieParser())
+app.use(authentication.decodeToken)
+
+// Routes
+import users from './api/users'
+app.use('/api/', users)
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
