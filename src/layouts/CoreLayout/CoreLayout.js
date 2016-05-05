@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../../components/Header/Header'
-import classes from './CoreLayout.scss'
+import Header from '../../components/Header'
+import './CoreLayout.scss'
 import '../../styles/core.scss'
 
 export default class CoreLayout extends React.Component {
@@ -9,7 +9,7 @@ export default class CoreLayout extends React.Component {
       <div>
         <Header />
         <div className='container text-center'>
-          <div className={classes.mainContainer}>
+          <div className='mainContainer'>
             {this.props.children}
           </div>
         </div>
@@ -20,5 +20,3 @@ export default class CoreLayout extends React.Component {
 CoreLayout.propTypes = {
   children: React.PropTypes.element.isRequired
 }
-
-export default CoreLayout
