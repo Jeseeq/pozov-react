@@ -9,9 +9,7 @@ export default class CoreLayout extends React.Component {
       <div>
         <Header />
         <div className='container text-center'>
-          <div className='mainContainer'>
             {this.props.children}
-          </div>
         </div>
       </div>
     )

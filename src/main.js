@@ -29,7 +29,7 @@ let render = (key = null) => {
   const routes = require('./routes/index').default(store)
   const App = (
     <Provider store={store}>
-      <div style={{ height: '100%' }}>
+      <div>
         <Router history={history} children={routes} key={key} />
       </div>
     </Provider>

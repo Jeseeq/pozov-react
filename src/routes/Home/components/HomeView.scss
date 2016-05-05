@@ -1,5 +1,89 @@
+$break-md: 992px;
+
+
 .duck {
   display: block;
   width: 120px;
   margin: 1.5rem auto;
+}
+.purchase {
+  text-align: left;
+  padding: 25px 0 30px;
+  border-bottom: solid 1px #eee;
+}
+.purchase p {
+  margin-bottom: 0;
+}
+.purchase span{
+  color: #666;
+  display: block;
+  font-size: 24px;
+  line-height: 35px;
+  margin-bottom: 12px;
+}
+
+.btn-a{
+  background: #72c02c;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+
+  &:hover {
+    background: #5fb611;
+    border: 0;
+    transition: all .3s ease-in-out;
+  }
+  &:active {
+    background: #5fb611;
+  }
+  &:focus {
+    color: #134fb8;
+    background: #5fb611;
+    outline: none;  
+  }
+}
+
+.btn-buy {
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 25px;
+  margin-top: 27px;
+}
+
+.heading-sm a{
+  color: #555;
+  font-weight: 400;
+  &:hover{
+    color: #5fb611;
+    text-decoration: none;
+  }
+}
+.content-boxes, .content-boxes .text-justify {
+  text-align: justify;
+
+  @media screen and (max-width: $break-md){
+    text-align: center;
+  }
+}
+.content-boxes span {
+  @media screen and (max-width: $break-md){
+    display: block;
+    margin-top: 5px;
+  }
+}
+
+.icon-custom{
+  background: #555;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  line-height: 35px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border: 1px solid #555;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
 }
