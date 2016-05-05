@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link, IndexLink} from 'react-router'
+// import {Link, IndexLink} from 'react-router'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+// import {LinkContainer} from 'react-router-bootstrap'
 
 const BootstrapHeader = Navbar.Header
 const BootstrapToggle = Navbar.Toggle
@@ -14,15 +14,15 @@ class Header extends React.Component {
       <Navbar>
         <BootstrapHeader>
           <BootstrapBrand>
-            <a href="#">React-Bootstrap</a>
+            <a href='#'>React-Bootstrap</a>
           </BootstrapBrand>
           <BootstrapToggle />
         </BootstrapHeader>
         <BootstrapCollapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Link</NavItem>
-            <NavItem eventKey={2} href="#">Link</NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+            <NavItem eventKey={1} href='#'>Link</NavItem>
+            <NavItem eventKey={2} href='#'>Link</NavItem>
+            <NavDropdown eventKey={3} title='Dropdown' id='basic-nav-dropdown'>
               <MenuItem eventKey={3.1}>Action</MenuItem>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
@@ -31,8 +31,8 @@ class Header extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#">Link Right</NavItem>
-            <NavItem eventKey={2} href="#">Link Right</NavItem>
+            <NavItem eventKey={1} href='#'>Link Right</NavItem>
+            <NavItem eventKey={2} href='#'>Link Right</NavItem>
           </Nav>
         </BootstrapCollapse>
       </Navbar>
