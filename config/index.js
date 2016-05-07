@@ -45,10 +45,11 @@ const config = {
   compiler_vendor : [
     'history',
     'react',
+    'redux',
     'react-redux',
     'react-router',
     'react-router-redux',
-    'redux'
+    'react-bootstrap'
   ],
 
   // ----------------------------------
