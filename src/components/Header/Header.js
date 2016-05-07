@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link, IndexLink} from 'react-router'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import {logout} from 'routes/Auth/modules/auth'
+import {logout} from '../../routes/Auth/modules/auth'
 import './Header.scss'
 const BootstrapHeader = Navbar.Header
 const BootstrapToggle = Navbar.Toggle
@@ -16,7 +16,7 @@ class Header extends React.Component {
     this.props.logout()
   }
   render () {
-    let {user} = this.props
+    const {user} = this.props
     return (
       <Navbar className='header'>
         <BootstrapHeader>
