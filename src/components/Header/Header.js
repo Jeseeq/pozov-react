@@ -16,7 +16,7 @@ class Header extends React.Component {
     this.props.logout()
   }
   render () {
-    const {user} = this.props;
+    let {user} = this.props
     return (
       <Navbar className='header'>
         <BootstrapHeader>
