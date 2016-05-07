@@ -7,6 +7,7 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const LOGOUT = 'LOGOUT'
 
 const ROOT_URL = location.href.indexOf('http://192.168.1.12') > 0 ? 'http://192.168.1.12:3000' : '/api'
 
@@ -55,6 +56,11 @@ export function loginFailure (error) {
   return {
     type: LOGIN_FAILURE,
     payload: error
+  }
+}
+export function logout () {
+  return {
+    type: LOGOUT
   }
 }
 
@@ -115,6 +121,15 @@ const ACTION_HANDLERS = {
       user: null,
       status: 'signin',
       error: error,
+      loading: false
+    })
+  },
+  [LOGOUT]: (state, action) => {
+    return ({
+      ...state,
+      user: null,
+      status: 'signin',
+      error: null,
       loading: false
     })
   }

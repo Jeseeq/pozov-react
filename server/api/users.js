@@ -27,11 +27,11 @@ function isUserUnique (reqBody, cb) {
     var err
     if (user.username === username){
       err = {};
-      err.username = '' + username + ' is not unique';
+      err.username = 'імя' + username + ' вже існує';
     }
     if (user.email === email){
       err = err ? err : {};
-      err.email = '' + email + ' is not unique';
+      err.email = 'email' + email + ' вже існує';
     }
     cb(err);
   });
@@ -90,9 +90,7 @@ router.post('/users/signup', function(req, res) {
         path: '/',
         httpOnly: true
 
-      }).json({
-        user: user,
-      });
+      }).json(user)
 
     });
   });
@@ -113,14 +111,14 @@ router.post('/users/signin', function(req, res) {
     if (!user){
       return res.status(404).json({
         _error: 'Login failed',
-        username: 'Username is wrong'
+        username: 'Невірне імя користувача'
       });
     }
     bcrypt.compare(req.body.password, user.password, function(err, valid) {
       if (!valid){
         return res.status(404).json({
           _error: 'Login failed',
-          password: 'Password is wrong'
+          password: 'Невірний пароль'
         });
       }
       var token = utils.generateToken(user);
@@ -130,9 +128,7 @@ router.post('/users/signin', function(req, res) {
         maxAge: 60 * 60 * 24 * 7 * 1000, // 7d
         path: '/',
         httpOnly: true
-      }).json({
-        user: user,
-      });
+      }).json(user)
 
     });
 

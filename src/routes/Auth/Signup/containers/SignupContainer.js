@@ -17,21 +17,21 @@ import SignupForm from '../components/SignupForm'
 const validate = (values) => {
   const errors = {}
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Please enter username'
+    errors.username = 'Введіть імя'
   }
   if (!values.email || values.email.trim() === '') {
-    errors.email = 'Please enter email'
+    errors.email = 'Введіть email'
   }
   if (!values.password || values.password.trim() === '') {
-    errors.password = 'Please enter password'
+    errors.password = 'Введіть пароль'
   }
   if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Please confirm password'
+    errors.confirmPassword = 'Введіть підтвердження паролю'
   }
   if (values.password && values.password.trim() !== '' &&
       values.confirmPassword && values.confirmPassword.trim() !== '' &&
       values.password !== values.confirmPassword) {
-    errors.confirmPassword = 'Password and confirm don\'t match'
+    errors.confirmPassword = 'Паролі не співпадають'
   }
   return errors
 }

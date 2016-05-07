@@ -12,10 +12,10 @@ const validate = values => {
   const errors = {}
 
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Enter a username'
+    errors.username = 'Введіть імя користувача'
   }
   if (!values.password || values.password.trim() === '') {
-    errors.password = 'Enter a password'
+    errors.password = 'Введіть пароль'
   }
   return errors
 }

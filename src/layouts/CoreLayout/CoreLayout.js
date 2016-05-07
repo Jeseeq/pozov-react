@@ -8,7 +8,7 @@ export default class CoreLayout extends React.Component {
     return (
       <div>
         <Header />
-        <div className='container text-center'>
+        <div className='container'>
             {this.props.children}
         </div>
       </div>

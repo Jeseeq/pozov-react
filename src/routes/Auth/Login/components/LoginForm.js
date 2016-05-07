@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
-
+import './LoginForm.scss'
 export default class LoginForm extends Component {
 
   static contextTypes = {
@@ -28,41 +28,46 @@ export default class LoginForm extends Component {
     } = this.props
 
     return (
-      <div className='container form-container'>
-        <h1 className='text-center'>Sign into account</h1>
-        <form onSubmit={handleSubmit(this.props.signIn.bind(this))}>
-
+      <div className='col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6 form-container'>
+        <i className='fa fa-user'></i>
+        <header>Вхід</header>
+        <form className='form-horizontal' onSubmit={handleSubmit(this.props.signIn.bind(this))}>
           <div className={`form-group ${username.touched && username.error ? 'has-error' : ''}`}>
-            <label htmlFor='username' className='control-label'>Username</label>
-            <input
-              id='username'
-              placeholder='@username'
-              type='text'
-              className='form-control'
-              {...username} />
-            <div className='text-help text-danger'>
+            <label htmlFor='username' className='control-label col-sm-4'>Ім'я користувача</label>
+            <div className='col-sm-8'>
+              <input
+                id='username'
+                placeholder='@username'
+                type='text'
+                className='form-control'
+                {...username} />
+            </div>
+            <div className='col-sm-8 col-sm-offset-4  text-danger'>
               {username.touched ? username.error : ''}
             </div>
           </div>
           <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
-            <label htmlFor='password' className='control-label'>Password*</label>
-            <input
-              id='password'
-              type='password'
-              className='form-control'
-              {...password} />
-            <div className='text-help text-danger'>
+            <label htmlFor='password' className='control-label col-sm-4'>Пароль*</label>
+            <div className='col-sm-8'>
+              <input
+                id='password'
+                type='password'
+                className='form-control col-sm-8'
+                {...password} />
+            </div>
+            <div className='col-sm-8 col-sm-offset-4  text-danger'>
               {password.touched ? password.error : ''}
             </div>
           </div>
-          <button type='submit' className='btn btn-primary'>
-            <i className={submitting ? 'fa fa-spinner fa-spin' : 'fa fa-paper-plane'} />
-              Submit
-          </button>
-          <Link to='/' className='btn btn-default'>Cancel</Link>
+          <div className='form-group text-center'>
+            <button type='submit' className='btn btn-primary submit'>
+              <i className={submitting ? 'fa fa-spinner fa-spin' : 'fa fa-paper-plane'} /> Ввійти
+            </button>
+            <Link to='/' className='btn btn-default'>Назад</Link>
+          </div>
         </form>
-        <p>Dont have an account yet?</p>
-        <p><Link to={'/signup'}>Signup </Link>now</p>
+        <p className='text-center'>Ще не маєте аккаунта</p>
+        <p className='text-center'><Link to={'/signup'}>Зареєструйтесь </Link>зараз</p>
       </div>
     )
   }
