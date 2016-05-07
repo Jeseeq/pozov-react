@@ -37,7 +37,7 @@ class Header extends React.Component {
             <LinkContainer to={{pathname: '/login'}}>
               <NavItem eventKey={2} href='#'>Вхід</NavItem>
             </LinkContainer>
-            <NavDropdown eventKey={3} title={user.username || 'Анон'} id='basic-nav-dropdown'>
+            <NavDropdown eventKey={3} title={user.username ? user.username : 'Анон'} id='basic-nav-dropdown'>
               <MenuItem eventKey={3.1}>Редагувати профіль</MenuItem>
               <MenuItem eventKey={3.2}>Змінити аватар</MenuItem>
               <MenuItem eventKey={3.3}>Змінити пароль</MenuItem>
