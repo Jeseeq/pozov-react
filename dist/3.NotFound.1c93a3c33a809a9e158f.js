@@ -1,0 +1,1 @@
+webpackJsonp([3],{388:function(e,t,u){"use strict";function o(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0}),t.NotFound=void 0;var d=u(28),n=o(d),i=u(1),f=(o(i),t.NotFound=function(){return(0,n["default"])("div",{},void 0,(0,n["default"])("h1",{},void 0,"Такої сторінки не існує"))});t["default"]=f}});
