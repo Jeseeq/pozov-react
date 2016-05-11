@@ -33,10 +33,15 @@
   footer {
     background-color: #f5f5f5;
     display: inline-flex;
-  }
-  footer li {
+  li {
     padding-top: 15px;
+    i {
+      padding-right: 5px;
+    }
   }
+
+}
+
   .rounded-2x {
     border-radius: 10px;
   }

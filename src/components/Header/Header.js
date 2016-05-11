@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link, IndexLink} from 'react-router'
+import {Link} from 'react-router'
+import {push} from 'react-router-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {logout} from '../../routes/Auth/modules/auth'
@@ -11,6 +12,10 @@ const BootstrapBrand = Navbar.Brand
 const BootstrapCollapse = Navbar.Collapse
 
 class Header extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleLogout = this.handleLogout.bind(this)
+  }
   handleLogout (e) {
     e.preventDefault()
     this.props.logout()
@@ -43,11 +48,17 @@ class Header extends React.Component {
             : null}
             {user
             ? <NavDropdown eventKey={3} title={user.username} id='basic-nav-dropdown'>
-              <MenuItem eventKey={3.1}>Редагувати профіль</MenuItem>
-              <MenuItem eventKey={3.2}>Змінити аватар</MenuItem>
-              <MenuItem eventKey={3.3}>Змінити пароль</MenuItem>
+              <LinkContainer to={{pathname: '/settings/profile'}}>
+                <MenuItem eventKey={3.1}>Редагувати профіль</MenuItem>
+              </LinkContainer>
+              <LinkContainer to={{pathname: '/settings/avatar'}}>
+                <MenuItem eventKey={3.2}>Змінити аватар</MenuItem>
+              </LinkContainer>
+              <LinkContainer to={{pathname: '/settings/password'}}>
+                <MenuItem eventKey={3.3}>Змінити пароль</MenuItem>
+              </LinkContainer>
               <MenuItem divider />
-              <MenuItem eventKey={3.3} onClick={this.handleLogout.bind(this)} >Вихід</MenuItem>
+              <MenuItem eventKey={3.3} onClick={this.handleLogout} >Вихід</MenuItem>
             </NavDropdown>
             : null}
           </Nav>
@@ -62,7 +73,15 @@ const mapStateToProps = (state) => {
     status: state.user.status
   }
 }
-const mapActionCreators = {
-  logout: () => logout()
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => {
+      dispatch(logout()).then((response) => {
+        if (!response.error) {
+          dispatch(push('/'))
+        }
+      })
+    }
+  }
 }
-export default connect(mapStateToProps, mapActionCreators)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

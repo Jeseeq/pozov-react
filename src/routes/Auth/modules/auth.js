@@ -7,6 +7,7 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const GET_CURRENT_USER = 'GET_CURRENT_USER'
 export const LOGOUT = 'LOGOUT'
 
 const ROOT_URL = location.href.indexOf('http://192.168.1.12') > 0 ? 'http://192.168.1.12:3000' : '/api'
@@ -59,11 +60,25 @@ export function loginFailure (error) {
   }
 }
 export function logout () {
+  const request = axios({
+    method: 'post',
+    url: `${ROOT_URL}/users/logout`
+  })
   return {
-    type: LOGOUT
+    type: LOGOUT,
+    payload: request
   }
 }
-
+export function getCurrentUser () {
+  const request = axios({
+    method: 'get',
+    url: `${ROOT_URL}/users/get/user/from/cookie`
+  })
+  return {
+    type: GET_CURRENT_USER,
+    payload: request
+  }
+}
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
@@ -132,6 +147,11 @@ const ACTION_HANDLERS = {
       error: null,
       loading: false
     })
+  },
+  [GET_CURRENT_USER]: (state, action) => {
+    return {
+      ...state
+    }
   }
 }
 

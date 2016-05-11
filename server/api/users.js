@@ -150,12 +150,9 @@ router.post('/users/logout', function (req, res) {
 })
 
 router.get('/users/get/user/from/cookie', function (req, res) {
-
   // check for user wich come from moddleware
   if (req.user) {
-    return res.json({
-      user: req.user
-    })
+    return res.json(req.user)
   }
   res.json({
     message: 'You better login =)'
