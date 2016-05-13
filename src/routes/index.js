@@ -6,7 +6,7 @@ import SignupRoute from './Auth/Signup'
 import NotFound from './NotFound'
 import Settings from './Settings'
 import Restricted from './Restricted'
-import {loginSuccess, getCurrentUser} from './Auth/modules/auth'
+import {loginSuccess, getCurrentUser} from 'modules/user'
 
 const checkUser = (store) => {
   store.dispatch(getCurrentUser())

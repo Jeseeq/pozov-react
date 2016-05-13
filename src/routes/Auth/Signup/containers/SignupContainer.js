@@ -2,7 +2,7 @@ import {
   signup,
   signupSuccess,
   signupFailure
-} from '../../modules/auth'
+} from 'modules/user'
 
 import {
   validateUserFieldsFailure,
@@ -17,7 +17,10 @@ import SignupForm from '../components/SignupForm'
 const validate = (values) => {
   const errors = {}
   if (!values.username || values.username.trim() === '') {
-    errors.username = 'Введіть імя'
+    errors.username = 'Введіть імя користувача'
+  }
+  if (!values.name || values.name.trim() === '') {
+    errors.name = 'Введіть імя'
   }
   if (!values.email || values.email.trim() === '') {
     errors.email = 'Введіть email'
@@ -84,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default reduxForm({
   form: 'SignupForm',
-  fields: ['username', 'email', 'password', 'confirmPassword'],
+  fields: ['username', 'name', 'email', 'password', 'confirmPassword'],
   asyncValidate,
   asyncBlurFields: ['username', 'email'],
   validate

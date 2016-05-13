@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken')
 function generateToken (user) {
   var token
   var u = {
+    email: user.email,
     username: user.username,
     name: user.name,
     admin: user.admin,
@@ -22,6 +23,7 @@ function getCleanUser (user) {
     _id: u._id,
     username: u.username,
     name: u.name,
+    avatar: u.avatar,
     email: u.email,
     admin: u.admin,
     createdAt: u.createdAt,

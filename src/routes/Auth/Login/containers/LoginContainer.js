@@ -2,7 +2,7 @@ import {
   login,
   loginSuccess,
   loginFailure
-} from '../../modules/auth'
+} from 'modules/user'
 
 import {reduxForm} from 'redux-form'
 import LoginForm from '../components/LoginForm'

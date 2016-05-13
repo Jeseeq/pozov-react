@@ -1,9 +1,38 @@
 var express = require('express')
+var path = require('path')
+var crypto = require('crypto')
 var router = express.Router()
 var bcrypt = require('bcrypt')
 var utils = require('../utils/index')
+var config = require('../config')
 var User = require('../models/User')
+var _ = require('lodash')
 
+/*
+  Config file upload
+*/
+var multer = require('multer')
+var storage = multer.diskStorage({
+  destination: './server/uploads/avatar/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+
+      cb(null, raw.toString('hex') + path.extname(file.originalname))
+    })
+  }
+})
+
+var upload = multer({ storage: storage })
+
+upload.fileFilter = function (req, file, cb) {
+  if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' &&
+      file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/gif') {
+    cb(null, false)
+  } else {
+    cb(null, true)
+  }
+}
 function isUserUnique (reqBody, cb) {
   var username = reqBody.username ? reqBody.username.trim() : ''
   var email = reqBody.email ? reqBody.email.trim() : ''
@@ -25,11 +54,11 @@ function isUserUnique (reqBody, cb) {
     var err
     if (user.username === username) {
       err = {}
-      err.username = 'імя' + username + ' вже існує'
+      err.username = 'імя ' + username + ' вже існує'
     }
     if (user.email === email) {
       err = err ? err : {}
-      err.email = 'email' + email + ' вже існує'
+      err.email = 'email ' + email + ' вже існує'
     }
     cb(err)
   })
@@ -56,6 +85,75 @@ router.get('/users/?', function (req, res) {
     res.json(users)
   })
 })
+/*
+  Update user profile
+*/
+router.put('/users', (req, res) => {
+  if (!req.user) {
+    return res.status(401).send('Ввійдіть або зареєструйтесь')
+  }
+  var user = req.user
+  User.findOne({
+    _id: user._id
+  }).exec(function (err, user) {
+    if (err) {
+      return res.status(500).send('Виникла помилка при виконанні запиту')
+    }
+    if (!user) {
+      return res.status(404).send('Користувач не знайдений')
+    }
+    // Modify user
+    user = _.extend(user, req.body)
+    user.save(function (err, user) {
+      if (err) {
+        return res.status(400).send('Виникла помилка при збереженні')
+      } else {
+        var token = utils.generateToken(user)
+        user = utils.getCleanUser(user)
+        res.cookie('auth_token', token, {
+          maxAge: 60 * 60 * 24 * 7 * 1000,    // 7d
+          path: '/',
+          httpOnly: true
+        }).json(user)
+      }
+    })
+  })
+})
+/*
+  Update user avatar
+*/
+router.post('/users/picture', upload.single('avatar'), function (req, res) {
+  // Filtering to upload only images
+  if (req.user) {
+    var user = req.user
+    User.findOne({
+      _id: user._id
+    }).exec(function (err, user) {
+      if (err) {
+        return res.status(500).send('Виникла помилка при виконанні запиту')
+      }
+      if (!user) {
+        return res.status(404).send('Користувач не знайдений')
+      }
+      user.avatar = config.uploads.path + req.file.filename
+      user.save(function (err, user) {
+        if (err) {
+          return res.status(400).send('Виникла помилка при збереженні')
+        } else {
+          var token = utils.generateToken(user)
+          user = utils.getCleanUser(user)
+          res.cookie('auth_token', token, {
+            maxAge: 60 * 60 * 24 * 7 * 1000,    // 7d
+            path: '/',
+            httpOnly: true
+          }).json(user)
+        }
+      })
+    })
+  } else {
+    return res.status(401).send('Ввійдіть або зареєструйтесь')
+  }
+})
 
 router.post('/users/signup', function (req, res) {
   var body = req.body
@@ -68,6 +166,7 @@ router.post('/users/signup', function (req, res) {
     var hash = bcrypt.hashSync(body.password.trim(), 10)
 
     var user = new User({
+      name: body.name.trim(),
       username: body.username.trim(),
       email: body.email.trim(),
       password: hash,

@@ -4,8 +4,9 @@ import {Link} from 'react-router'
 import {push} from 'react-router-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import {logout} from '../../routes/Auth/modules/auth'
+import {logout} from 'modules/user'
 import './Header.scss'
+
 const BootstrapHeader = Navbar.Header
 const BootstrapToggle = Navbar.Toggle
 const BootstrapBrand = Navbar.Brand
@@ -15,6 +16,15 @@ class Header extends React.Component {
   constructor (props) {
     super(props)
     this.handleLogout = this.handleLogout.bind(this)
+    this.renderTitle = this.renderTitle.bind(this)
+  }
+  renderTitle (user) {
+    return (
+      <span>
+        <img className='header-profile-img' src={user.avatar} alt="Placehold.it" />
+        {user.username}
+      </span>
+    )
   }
   handleLogout (e) {
     e.preventDefault()
@@ -47,7 +57,7 @@ class Header extends React.Component {
             </LinkContainer>
             : null}
             {user
-            ? <NavDropdown eventKey={3} title={user.username} id='basic-nav-dropdown'>
+            ? <NavDropdown eventKey={3} title={this.renderTitle(user)} id='basic-nav-dropdown'>
               <LinkContainer to={{pathname: '/settings/profile'}}>
                 <MenuItem eventKey={3.1}>Редагувати профіль</MenuItem>
               </LinkContainer>

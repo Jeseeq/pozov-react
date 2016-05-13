@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
-
-
+import '../../Form.scss'
 
 export default class SignupForm extends Component {
 
@@ -20,7 +19,7 @@ export default class SignupForm extends Component {
   }
   render () {
     const {
-      fields: { username, email, password, confirmPassword },
+      fields: { username, name, email, password, confirmPassword },
       handleSubmit,
       submitting,
       signup
@@ -31,7 +30,7 @@ export default class SignupForm extends Component {
         <header>Реєстрація</header>
         <form className='form-horizontal' onSubmit={handleSubmit(signup)}>
           <div className={`form-group ${username.touched && username.error ? 'has-error' : ''}`}>
-            <label htmlFor='username' className='control-label col-sm-4'>Імя</label>
+            <label htmlFor='username' className='control-label col-sm-4'>Імя користувача</label>
             <div className='col-sm-8'>
               <input
                 id='username'
@@ -42,6 +41,20 @@ export default class SignupForm extends Component {
             </div>
             <div className='col-sm-8 col-sm-offset-4  text-danger'>
               {username.touched ? username.error : ''}
+            </div>
+          </div>
+          <div className={`form-group ${name.touched && name.error ? 'has-error' : ''}`}>
+            <label htmlFor='username' className='control-label col-sm-4'>Імя</label>
+            <div className='col-sm-8'>
+              <input
+                id='name'
+                placeholder='name'
+                type='text'
+                className='form-control'
+                {...name} />
+            </div>
+            <div className='col-sm-8 col-sm-offset-4  text-danger'>
+              {name.touched ? name.error : ''}
             </div>
           </div>
           <div className={`form-group ${email.touched && email.error ? 'has-error' : ''}`}>

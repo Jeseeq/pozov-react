@@ -7,12 +7,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const ChangePassword = require('./ChangePassword').default
-      // const reducer = require('./modules/login').default
-      //
-      // /*  Add the reducer to the store on key 'counter'  */
-      // injectReducer(store, { key: 'login', reducer })
-
+      const ChangePassword = require('./ChangePasswordContainer').default
       /*  Return getComponent   */
       cb(null, ChangePassword)
 

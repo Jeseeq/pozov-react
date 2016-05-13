@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
-import './LoginForm.scss'
+import '../../Form.scss'
 export default class LoginForm extends Component {
 
   static contextTypes = {

@@ -10,3 +10,10 @@ For example:
 @import './variables/components';
 @import './themes/default';
 */
+
+// Ovveride for bootstrap plceholder
+
+.form-control::placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}

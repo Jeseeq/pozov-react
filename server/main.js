@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack from 'webpack'
 import webpackConfig from '../build/webpack.config'
 import express from 'express'
@@ -59,6 +60,8 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
   app.use('/', express.static(paths.client('static')))
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
   // app.use(convert(serve(paths.client('static'))))
 } else {
   debug(
@@ -78,6 +81,7 @@ if (config.env === 'development') {
   // the web server and not the app server, but this helps to demo the
   // server in production.
   app.use('/', express.static(paths.dist()))
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 }
 
 export default app
