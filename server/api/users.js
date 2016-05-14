@@ -22,7 +22,6 @@ var storage = multer.diskStorage({
     })
   }
 })
-
 var upload = multer({ storage: storage })
 
 upload.fileFilter = function (req, file, cb) {

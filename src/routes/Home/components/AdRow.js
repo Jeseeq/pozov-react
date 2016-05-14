@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
+import {Link} from 'react-router'
 
 export const AdRow = () => (
   <div className='purchase'>
@@ -13,9 +14,11 @@ export const AdRow = () => (
           Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
         </div>
         <div className='col-md-4 btn-buy animated fadeInRight'>
-          <Button className='btn-lg btn-a rounded-2x'>
-            <i className='fa fa-cloud-download'></i> Конструктор документов
-          </Button>
+          <Link to='/documents'>
+            <Button className='btn-lg btn-a rounded-2x'>
+              <i className='fa fa-cloud-download'></i> Конструктор документов
+            </Button>
+          </Link>
           <div className='margin-bottom-10'></div>
         </div>
       </div>

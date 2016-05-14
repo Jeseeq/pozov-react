@@ -43,7 +43,9 @@ class Header extends React.Component {
         <BootstrapCollapse>
           <Nav>
             <NavItem eventKey={1} href='#'>Підтримка</NavItem>
-            <NavItem eventKey={2} href='#'>Створити Документ</NavItem>
+            <LinkContainer to={{pathname: '/documents'}}>
+              <NavItem eventKey={2} href='#'>Створити Документ</NavItem>
+            </LinkContainer>
           </Nav>
           <Nav pullRight>
             {!user

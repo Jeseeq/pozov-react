@@ -6,6 +6,7 @@ import SignupRoute from './Auth/Signup'
 import NotFound from './NotFound'
 import Settings from './Settings'
 import Restricted from './Restricted'
+import Documents from './Documents'
 import {loginSuccess, getCurrentUser} from 'modules/user'
 
 const checkUser = (store) => {
@@ -26,6 +27,7 @@ export const createRoutes = (store) => ({
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
+    Documents(store),
     LoginRoute(store),
     SignupRoute(store),
     Restricted(Settings(store)),
