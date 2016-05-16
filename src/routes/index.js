@@ -6,6 +6,7 @@ import SignupRoute from './Auth/Signup'
 import NotFound from './NotFound'
 import Settings from './Settings'
 import Restricted from './Restricted'
+import Categories from './Categories'
 import Documents from './Documents'
 import {loginSuccess, getCurrentUser} from 'modules/user'
 
@@ -28,6 +29,7 @@ export const createRoutes = (store) => ({
   indexRoute: Home,
   childRoutes: [
     Documents(store),
+    Categories(store),
     LoginRoute(store),
     SignupRoute(store),
     Restricted(Settings(store)),
