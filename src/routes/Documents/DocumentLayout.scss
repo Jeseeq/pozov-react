@@ -4,8 +4,12 @@
   height: 768px;
   background: #fbfbfb;
   border: 1px solid #blue;
-  user-select: none; 
+  user-select: none;
 }
 .area .content {
   padding: 20px;
+}
+
+#tab li a {
+  outline: none;
 }
