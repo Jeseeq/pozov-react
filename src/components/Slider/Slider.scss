@@ -19,7 +19,7 @@
 
 .blocks-box,
 .slick-slider {
-  margin: 0 auto 15px auto;
+  margin: 0 auto;
   padding: 0!important;
 }
 
@@ -105,24 +105,25 @@
 }
 
 .modernSlider .item h3{
-  font: 3vw RalewayB;
+  font: 2.6vw RalewayB;
   text-transform:uppercase;
   color:#FFF;
   font-weight: 400;
   animation:fadeOutRight 1s both;
   margin:0;
   padding:0;
+  max-height: 40px;
+  
 }
 
 .modernSlider .item h4{
   margin: 0;
   padding: 0;
-  font: 1.6vw RalewayR;
+  font: 1.45vw RalewayR;
   color: #FFF;
   font-weight: 400;
   max-width: 600px;
   overflow: hidden;
-  height: 60px;
   animation: fadeOutLeft 1s both;
 }
 
