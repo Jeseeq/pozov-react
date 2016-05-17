@@ -19,9 +19,11 @@ class Header extends React.Component {
     this.renderTitle = this.renderTitle.bind(this)
   }
   renderTitle (user) {
+    let fileName = user.avatar.split('/').pop()
+    let imageUrl = `/uploads/avatar/48/${fileName}`
     return (
       <span>
-        <img className='header-profile-img' src={user.avatar} alt="Placehold.it" />
+        <img className='header-profile-img' src={imageUrl} alt='Аватар' />
         {user.username}
       </span>
     )

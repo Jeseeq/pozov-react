@@ -1,3 +1,6 @@
+var gulp = require('gulp')
+var imageResize = require('gulp-image-resize')
+
 var express = require('express')
 var path = require('path')
 var crypto = require('crypto')
@@ -7,7 +10,6 @@ var utils = require('../utils/index')
 var config = require('../config')
 var User = require('../models/User')
 var _ = require('lodash')
-
 /*
   Config file upload
 */
@@ -32,6 +34,7 @@ upload.fileFilter = function (req, file, cb) {
     cb(null, true)
   }
 }
+
 function isUserUnique (reqBody, cb) {
   var username = reqBody.username ? reqBody.username.trim() : ''
   var email = reqBody.email ? reqBody.email.trim() : ''
@@ -134,19 +137,42 @@ router.post('/users/picture', upload.single('avatar'), function (req, res) {
       if (!user) {
         return res.status(404).send('Користувач не знайдений')
       }
-      user.avatar = config.uploads.path + req.file.filename
-      user.save(function (err, user) {
-        if (err) {
-          return res.status(400).send('Виникла помилка при збереженні')
-        } else {
-          var token = utils.generateToken(user)
-          user = utils.getCleanUser(user)
-          res.cookie('auth_token', token, {
-            maxAge: 60 * 60 * 24 * 7 * 1000,    // 7d
-            path: '/',
-            httpOnly: true
-          }).json(user)
-        }
+
+      /*
+      Process image
+      */
+      gulp.src(path.join(__dirname, '..', config.uploads.path + req.file.filename))
+      // save X x 200
+      .pipe(imageResize({
+        height: 200,
+        imageMagick: true
+      }))
+      .pipe(gulp.dest('server/uploads/avatar/320'))
+      .pipe(imageResize({
+        width: 48,
+        height: 48,
+        crop: true,
+        imageMagick: true
+      }))
+      .pipe(gulp.dest('server/uploads/avatar/48'))
+      .on('end', function () {
+        /*
+          save image url after proccessing
+        */
+        user.avatar = config.uploads.path + req.file.filename
+        user.save(function (err, user) {
+          if (err) {
+            return res.status(400).send('Виникла помилка при збереженні')
+          } else {
+            var token = utils.generateToken(user)
+            user = utils.getCleanUser(user)
+            res.cookie('auth_token', token, {
+              maxAge: 60 * 60 * 24 * 7 * 1000,    // 7d
+              path: '/',
+              httpOnly: true
+            }).json(user)
+          }
+        })
       })
     })
   } else {

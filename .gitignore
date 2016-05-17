@@ -5,4 +5,13 @@ node_modules
 !dist/node_modules
 coverage
 
-server/uploads/avatar/
+!server/uploads/avatar
+server/uploads/avatar/*
+!server/uploads/avatar/48
+!server/uploads/avatar/320
+
+server/uploads/avatar/48/*
+!server/uploads/avatar/48/default.png
+
+server/uploads/avatar/320/*
+!server/uploads/avatar/320/default.png

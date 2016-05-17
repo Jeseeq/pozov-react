@@ -30,7 +30,8 @@ export default class ChangeAvatar extends React.Component {
       change,
       user
     } = this.props
-    let imageUrl = avatar.value[0] ? this.state.avatarUrl : user.avatar
+    let fileName = user.avatar.split('/').pop()
+    let imageUrl = avatar.value[0] ? this.state.avatarUrl : `/uploads/avatar/320/${fileName}`
     return (
       <div classNameNameName='row'>
         <div className='col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6'>
