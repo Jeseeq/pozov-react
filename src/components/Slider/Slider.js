@@ -35,14 +35,14 @@ export default class Slider extends React.Component {
       nextArrow: <NextArrow />
     }
     return (
-      <Slick className='modernSlider' {...settings}>
+      <Slick className='modern-slider' {...settings}>
         <div className='item'>
           <div className='imgFill'>
             <img src={a} alt='' />
             <div className='info'>
               <div>
-                <h3>Конструктор документів</h3>
-                <h4>Створення документів ще ніколи не було таким простим</h4>
+                <h3 className='center-block'>Конструктор документів</h3>
+                <h4 className='center-block'>Створення документів ще ніколи не було таким простим</h4>
               </div>
             </div>
           </div>
@@ -52,8 +52,8 @@ export default class Slider extends React.Component {
             <img src={b} alt='' />
             <div className='info'>
               <div>
-                <h3>Простота</h3>
-                <h4>Щоб отримати потрібний документ просто
+                <h3 className='center-block'>Простота</h3>
+                <h4 className='center-block'>Щоб отримати потрібний документ просто
                 дайте відповідь на питання! І все!</h4>
               </div>
             </div>
@@ -64,8 +64,8 @@ export default class Slider extends React.Component {
             <img src={c} alt='' />
             <div className='info'>
               <div>
-                <h3>Багато задоволених користувачів</h3>
-                <h4>Ви можете ознайомитися з документом перед покупкою</h4>
+                <h3 className='center-block'>Багато задоволених користувачів</h3>
+                <h4 className='center-block'>Ви можете ознайомитися з документом перед покупкою</h4>
               </div>
             </div>
           </div>
@@ -75,8 +75,8 @@ export default class Slider extends React.Component {
             <img src={d} alt='' />
             <div className='info'>
               <div>
-                <h3>Ще щось</h3>
-                <h4>Donec id ornare dui. Aenean tristique condimentum elit, quis
+                <h3 className='center-block'>Ще щось</h3>
+                <h4 className='center-block'>Donec id ornare dui. Aenean tristique condimentum elit, quis
                 blandit nisl varius sit amet. Sed eleifend felis quis massa viverra</h4>
               </div>
             </div>
