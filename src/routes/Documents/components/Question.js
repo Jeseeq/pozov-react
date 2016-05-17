@@ -12,7 +12,6 @@ import {Panel} from 'react-bootstrap'
 
 import Radio from 'antd/lib/radio'
 import Input from 'antd/lib/input'
-
 import 'antd/lib/radio/style/index.css'
 import 'antd/lib/input/style/index.css'
 

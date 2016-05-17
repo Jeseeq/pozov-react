@@ -19,9 +19,6 @@ const checkUser = (store) => {
   })
 }
 
-/*  Note: Instead of using JSX, we recommend using react-router
-    PlainRoute objects to build route definitions.   */
-
 export const createRoutes = (store) => ({
   path: '/',
   onEnter: checkUser(store),
