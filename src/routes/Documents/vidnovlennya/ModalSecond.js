@@ -27,7 +27,7 @@ class ModalSecond extends Component {
             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.props.onClose}>Close</Button>
           </Modal.Footer>
         </Modal>
     )

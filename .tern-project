@@ -1,0 +1,10 @@
+{
+    "libs": [
+        "react",
+        "enzyme",
+        "redux"
+            ],
+        "plugins": {
+          "node": {}
+        }
+}

@@ -6,15 +6,18 @@ export const QuestionsData = [
     answers: [
       {
         id: 1,
-        choice: 'Юридичною особою'
+        choice: 'Юридичною особою',
+        modal: true
       },
       {
         id: 2,
-        choice: 'Фізичною особою – підприємцем'
+        choice: 'Фізичною особою – підприємцем',
+        modal: true
       },
       {
         id: 3,
-        choice: 'Фізичною особою'
+        choice: 'Фізичною особою',
+        modal: true
       }
     ]
   },
