@@ -11,7 +11,6 @@ import 'antd/lib/radio/style/index.css'
 const RadioGroup = Radio.Group
 
 
-
 export default class Question extends React.Component {
   constructor (props) {
     super(props)
