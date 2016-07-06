@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
+import {Link, IndexLink} from 'react-router'
 import {push} from 'react-router-redux'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
@@ -38,7 +38,7 @@ class Header extends React.Component {
       <Navbar className='header'>
         <BootstrapHeader>
           <BootstrapBrand>
-            <Link to='/'>Позов</Link>
+            <IndexLink to='/'>Позов</IndexLink>
           </BootstrapBrand>
           <BootstrapToggle />
         </BootstrapHeader>

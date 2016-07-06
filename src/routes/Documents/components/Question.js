@@ -1,53 +1,98 @@
 import React from 'react'
-import {Panel} from 'react-bootstrap'
-
-// export const Question = ({question, answers}) =>
-//   <Panel collapsible defaultExpanded header={question}>
-//     {answers.map((answer) =>
-//       <Radio value={answer} key={answer.id}>{answer.choice}</Radio>
-//     )}
-//   </Panel>
-//
-// export default Question
+import ReactDOM from 'react-dom'
+import {Panel, Overlay, Tooltip} from 'react-bootstrap'
+import ModalFirst from '../vidnovlennya/ModalFirst.js'
+import ModalSecond from '../vidnovlennya/ModalSecond.js'
+import ModalThird from '../vidnovlennya/ModalThird.js'
 
 import Radio from 'antd/lib/radio'
-import Input from 'antd/lib/input'
 import 'antd/lib/radio/style/index.css'
-import 'antd/lib/input/style/index.css'
 
 const RadioGroup = Radio.Group
+
+
 
 export default class Question extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: ''
+      tooltipShow: true,
+      modalFirstShow: false,
+      modalSecondShow: false,
+      modalThirdShow: false,
+      value: props.defaultChecked
     }
     this.onChange = this.onChange.bind(this)
+    this.onClose = this.onClose.bind(this)
   }
   onChange (e) {
-    console.log('radio checked', e.target.value)
+    console.log(e)
     this.setState({
-      value: e.target.value
+      value: e.target.value,
+      tooltipShow: false
+    })
+    switch (e.target.value) {
+      case 1:
+        this.setState({
+        modalFirstShow: true
+      })
+      break
+      case 2:
+        this.setState({
+        modalSecondShow: true
+      })
+      break
+      case 3:
+        this.setState({
+        modalThirdShow: true
+      })
+      break
+    }
+  }
+  onClose (){
+    this.setState({
+      modalFirstShow: false,
+      modalSecondShow: false,
+      modalThirdShow: false
     })
   }
+
   render () {
     const radioStyle = {
       display: 'block',
       height: '30px',
       lineHeight: '30px'
     }
+    let answers = this.props.answers
+    const tooltip = <Tooltip id='select-question'> {this.props.tooltip}</Tooltip>;
+
+    const sharedProps = {
+      show: this.state.tooltipShow,
+      container: this,
+      target: () => ReactDOM.findDOMNode(this.refs.target)
+    }
     return (
       <Panel collapsible defaultExpanded header={this.props.question}>
-        <RadioGroup onChange={this.onChange} value={this.state.value}>
-          <Radio style={radioStyle} key="a" value={1}>Option A</Radio>
-          <Radio style={radioStyle} key="b" value={2}>Option B</Radio>
-          <Radio style={radioStyle} key="c" value={3}>Option C</Radio>
-          <Radio style={radioStyle} key="d" value={4}>
-            More...
-            {this.state.value === 4 ? <Input style={{ width: 100, marginLeft: 10 }} /> : null}
-          </Radio>
+        {
+          this.props.tooltip ?
+            <Overlay placement='right' {...sharedProps} >
+              {tooltip}
+            </Overlay>
+            : null
+        }
+        <RadioGroup onChange={this.onChange} value={this.state.value} ref='target'>
+          {
+            answers.map((answer) => {
+              return (
+                <Radio style={radioStyle} onClick={this.onClick} value={answer.id}>{answer.choice}</Radio>
+              )
+            })
+          }
+
         </RadioGroup>
+        <ModalFirst showModal={this.state.modalFirstShow} onClose={this.onClose}/>
+        <ModalSecond showModal={this.state.modalSecondShow} onClose={this.onClose}/>
+        <ModalThird showModal={this.state.modalThirdShow} onClose={this.onClose}/>
       </Panel>
     )
   }

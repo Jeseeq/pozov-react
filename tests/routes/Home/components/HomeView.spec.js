@@ -1,19 +1,18 @@
 import React from 'react'
 import { HomeView } from 'routes/Home/components/HomeView'
-import { render } from 'enzyme'
+import {Slider} from 'components/Slider/Slider'
+import { shallow } from 'enzyme'
 
 describe('(View) Home', () => {
   let _component
 
   beforeEach(() => {
-    _component = render(<HomeView />)
+    _component = shallow(<HomeView />)
   })
 
-  it('Renders a welcome message', () => {
-    const welcome = _component.find('h4')
-    expect(welcome).to.exist
-    expect(welcome.text()).to.match(/Welcome!/)
-  })
-
-
+  // it('Renders Slider', () => {
+  //   expect(_component.contains(<Slider />)).to.equal.true
+    // expect(Slider).to.exist
+    // expect(welcome.text()).to.match(/Welcome!/)
+  // })
 })
