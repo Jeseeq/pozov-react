@@ -11,7 +11,7 @@ class ModalSecond extends Component {
 
   render() {
     return (
-     <Modal show={this.props.showModal} onHide={this.props.onClose}>
+     <Modal backdrop='static' show={this.props.showModal} onHide={this.props.onClose}>
           <ModalHeader closeButton>
             <ModalTitle>Modal Second</ModalTitle>
           </ModalHeader>

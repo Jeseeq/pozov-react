@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React Redux Starter Kit
 
 [![Join the chat at https://gitter.im/davezuko/react-redux-starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/davezuko/react-redux-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -223,3 +224,7 @@ This project wouldn't be possible without help from the community, so I'd like t
 * [Jonas Matser](https://github.com/mtsr) - For your help in triaging issues and unending support in our Gitter channel.
 
 And to everyone else who has contributed, even if you are not listed here your work is appreciated.
+=======
+# pozov-react
+working repo for my project
+>>>>>>> a9d80b5915f50bb2a171ca5b7ae5aef41749c2bb

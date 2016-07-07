@@ -24,15 +24,27 @@ export default class Question extends React.Component {
     this.onChange = this.onChange.bind(this)
     this.onClose = this.onClose.bind(this)
   }
-  onChange (e) {
-    console.log(e)
+  onChange (e, modal) {
     this.setState({
       value: e.target.value,
       tooltipShow: false
     })
-    switch (e.target.value) {
+
+    if(modal) {
+      this.openModal(e.target.value)
+    }
+  }
+  onClose (){
+    this.setState({
+      modalFirstShow: false,
+      modalSecondShow: false,
+      modalThirdShow: false
+    })
+  }
+  openModal (id){
+    switch (id) {
       case 1:
-        this.setState({
+        this.setState ({
         modalFirstShow: true
       })
       break
@@ -48,20 +60,14 @@ export default class Question extends React.Component {
       break
     }
   }
-  onClose (){
-    this.setState({
-      modalFirstShow: false,
-      modalSecondShow: false,
-      modalThirdShow: false
-    })
-  }
-
   render () {
     const radioStyle = {
       display: 'block',
-      height: '30px',
-      lineHeight: '30px'
+      height: 'auto',
+      lineHeight: '30px',
+      whiteSpace: 'normal'
     }
+
     let answers = this.props.answers
     const tooltip = <Tooltip id='select-question'> {this.props.tooltip}</Tooltip>;
 
@@ -70,6 +76,7 @@ export default class Question extends React.Component {
       container: this,
       target: () => ReactDOM.findDOMNode(this.refs.target)
     }
+
     return (
       <Panel collapsible defaultExpanded header={this.props.question}>
         {
@@ -79,17 +86,22 @@ export default class Question extends React.Component {
             </Overlay>
             : null
         }
-        <RadioGroup onChange={this.onChange} value={this.state.value} ref='target'>
+        <RadioGroup onChange={(e) => this.onChange(e, this.props.modal)} value={this.state.value} ref='target'>
           {
             answers.map((answer) => {
               return (
-                <Radio style={radioStyle} onClick={this.onClick} value={answer.id}>{answer.choice}</Radio>
+                <Radio
+                  style={radioStyle}
+                  key={answer.id}
+                  value={answer.id}>
+                  {answer.choice}
+                </Radio>
               )
             })
           }
 
         </RadioGroup>
-        <ModalFirst showModal={this.state.modalFirstShow} onClose={this.onClose}/>
+        <ModalFirst showModal={this.state.modalFirstShow} onClose={this.onClose} />
         <ModalSecond showModal={this.state.modalSecondShow} onClose={this.onClose}/>
         <ModalThird showModal={this.state.modalThirdShow} onClose={this.onClose}/>
       </Panel>

@@ -1,6 +1,7 @@
 export const QuestionsData = [
   {
     id: 1,
+    modal: true,
     question: 'Роботодавець є:?',
     tooltip: 'Виберіть один із варінтів',
     answers: [
